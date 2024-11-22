@@ -1,24 +1,30 @@
 import express from 'express';
-import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import routes from './routes/index.js';
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-const url = 'mongodb://127.0.0.1:27017/';
-const mongoClient = new MongoClient(url);
+app.use(express.json());
+
+const mongoUrl = process.env.MONGODB_URL;
 
 async function start() {
   try {
-    await mongoClient.connect();
+    await mongoose.connect(mongoUrl);
+    console.log("Подключено к MongoDB");
 
     app.use('/', routes);
 
     app.listen(PORT, () => {
-      console.log(`Server started on port: ${PORT}`);
+      console.log(`Сервер запущен на порту: ${PORT}`);
     });
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.error("Не удалось подключиться к MongoDB:", error);
+    process.exit(1);
   }
 }
 
