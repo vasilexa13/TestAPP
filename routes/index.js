@@ -7,7 +7,6 @@ router.get('/getAll', async (req, res) => {
     const candidates = await Candidates.find();//
     res.status(200).json(candidates);
   } catch (error) {
-    console.error("Ошибка при получении данных:", error);
     res.status(500).json({ message: 'Ошибка при получении данных' });
   }
 });
@@ -15,20 +14,44 @@ router.get('/getAll', async (req, res) => {
 router.post('/add', async (req, res) => {
   try {
     const reqBody = req.body;
-    res.status(200).json(reqBody);
+    const candidate = new Candidates(reqBody);
+    const savedCandidates = await candidate.save();
+    res.status(201).json(savedCandidates);
   }catch (err){
-    console.error("Ошибка при записи данных", err)
     res.status(500).json({ message: 'Ошибка при записи данных' });
   }
 })
 
-router.get('/test', (req, res) => {
-  res.send("Hello from /example route!");
-});
+router.delete('/delete/:id', async (req, res) => {
+  try{
+    const candidateId = req.params.id;
+    const deleteCandidate = await Candidates.findByIdAndDelete(candidateId);
+    if (!deleteCandidate){
+      res.status(404).json({message: 'Кандидат не найден'});
+    }else {
+      res.status(204).send();
+    }
+  }catch (err){
+    res.status(500).json({message: 'Ошибка при удалении записи'});
+  }
+})
 
-router.post('/postTest', (req, res) => {
-  const data = req.body;
-  res.status(201).send("Данные получены: " + JSON.stringify(data));
-});
+router.patch('/update/:id', async (req, res) => {
+  try{
+    const updateDATA = req.body;
+    const candidateId = req.params.id;
+    const updatedCandidate = await Candidates.findById(candidateId).updateOne(updateDATA)
+    if (!candidateId){
+      res.status(404).json({message : 'кандидат не найден'})
+    }else if(!updateDATA){
+      res.status(404).json({message : 'нет данных для обновления'})
+    }
+    else{
+      res.status(201).json(updatedCandidate);
+    }
+  }catch (err){
+    res.status(500).json({message: 'Ошибка при обновлении записи'});
+  }
+})
 
 export default router;
