@@ -1,0 +1,13 @@
+.tableHeadWrapper{
+    display: grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #dfdfdf;
+}
+.cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+}

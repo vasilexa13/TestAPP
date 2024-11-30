@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import "./App.css"
+import "./tableData.css"
 
 function TableData() {
     const [data, setData] = useState([]); // Для хранения полученных данных
@@ -36,13 +36,11 @@ function TableData() {
                     <div key={item.company} className="tableHeadWrapper">
                         <div className='cell'>{item.company}</div>
                         <div className='cell'>{item.vacancy}</div>
-                        <div className='cell'>{item.salaryRange.min}...{item.salaryRange.max}</div>
+                        <div className='cell'>{item.minSalary}...{item.maxSalary}</div>
                         <div className='cell'>{toString(item.resStatus)}</div>
                         <div className='cell'>{item.note}</div>
                     </div>
-
                 ))}
-
         </>
     )
 }
