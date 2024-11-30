@@ -1,0 +1,27 @@
+.tableHeadWrapper{
+    display: grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+}
+.wrapper{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: 0.4s;
+}
+.wrapper:hover{
+    transform: scale(1.2);
+    transition: 0.4s;
+    color: #dfdfdf;
+}
+
+
+
