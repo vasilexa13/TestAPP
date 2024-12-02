@@ -29,7 +29,17 @@
 .modal_content.active{
     transform: scale(1);
 }
-.reqStatus{
+.centred{
     display: flex;
+    padding: 5px;
+    justify-content: space-between;
     flex-direction: row;
+    align-items: center;
+    /*justify-content: center;*/
 }
+.btnModal{
+    justify-content: center;
+    gap: 10px;
+
+}
+
