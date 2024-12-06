@@ -1,15 +1,69 @@
 import "./modal.css"
-// import {Formik, Field, Form} from "formik";
+import {useEffect, useState} from "react";
+
+const useValidation = (value, validations) => {
+
+    const [isEmpty, setIsEmpty] = useState(true);
+    const [isMinLengthError, setIsMinLengthError] = useState(false);
+
+    useEffect(() => {
+        for (const validation in validations) {
+            switch(validation){
+                case "minLength":
+                    (value.length<validations[validation] ) ? setIsMinLengthError(true) : setIsMinLengthError(false);
+                    break;
+                case "isEmpty":
+                    value ? setIsEmpty(false) : setIsEmpty(true);
+                    break;
+            }
+        }
+    },[value])
+    return{
+        isEmpty,
+        isMinLengthError,
+        minLength:validations.minLength,
+
+    }
+
+}
+
+const useInput = (initialValue, validations) => {
+    const [value, setValue] = useState(initialValue);
+    const [isDirty, setIsDirty] = useState(false);
+    const valid = useValidation(value, validations)
+    const onChange = (e) => {
+        setValue(e.target.value)
+        if (isDirty){
+            setIsDirty(true)
+        }
+    }
+
+    const onBlur = (e) => {
+        setIsDirty(true);
+    }
+
+    return{
+        value,
+        onChange,
+        onBlur,
+        isDirty,
+        ...valid
+    }
+}
 
 const Modal = ({active , setActive, children}) => {
-    return(
+    const companyName = useInput("", {isEmpty:true , minLength:3});
+
+      return(
         <div className={active ? "modal active":"modal"} onClick={() => setActive(false)}>
             <div className={active ? "modal_content active":"modal_content"} onClick={e=>e.stopPropagation()}>
 
                 <form>
                     <div className='centred'>
-                        <label htmlFor='companyName'>Company Name</label>
-                        <input type='text' id="companyName"></input>
+                        <label  htmlFor='companyName'>Company Name</label>
+                        <input onChange={companyName.onChange} onBlur={companyName.onBlur} value={companyName.value} type='text' id="companyName" name='companyName'></input>
+                        {(companyName.isDirty && companyName.isEmpty) && <div style={{color:"red"}}>Поле не может быть пустым</div>}
+                        {(companyName.isDirty && companyName.isMinLengthError) && <div style={{color:"red"}}>Поле должно быть более {companyName.minLength} cимволов </div>}
                     </div>
 
                     <div className='centred'>
