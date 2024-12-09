@@ -17,6 +17,7 @@
 }
 
 .modal_content{
+    min-width: 400px;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -36,6 +37,9 @@
     flex-direction: row;
     align-items: center;
     /*justify-content: center;*/
+}
+.flex_elem{
+    min-width: 180px;
 }
 .btnModal{
     justify-content: center;

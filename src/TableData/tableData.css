@@ -12,3 +12,6 @@
     align-items: center;
     word-wrap: break-word;
 }
+.start_cell{
+    grid-column-start: 2;
+}

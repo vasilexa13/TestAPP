@@ -33,14 +33,14 @@ function TableData() {
     return (
         <>
                     {data.map(item => (
-                    <div key={item.company} className="tableDataWrapper">
-                        <div className='cell'>{item.company}</div>
-                        <div className='cell'>{item.vacancy}</div>
-                        <div className='cell'>{item.minSalary}...{item.maxSalary}</div>
-                        <div className='cell'>{toString(item.resStatus)}</div>
-                        <div className='cell'>{item.note}</div>
-                    </div>
-                ))}
+                        <div key={item.company} className="tableDataWrapper">
+                            <div className='cell start_cell'>{item.company}</div>
+                            <div className='cell'>{item.vacancy}</div>
+                            <div className='cell'>{item.minSalary}...{item.maxSalary}</div>
+                            <div className='cell'>{item.resStatus}</div>
+                            <div className='cell'>{item.note}</div>
+                        </div>
+                    ))}
         </>
     )
 }
