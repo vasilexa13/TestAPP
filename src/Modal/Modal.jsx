@@ -8,8 +8,12 @@ const Modal = ({ active, setActive, children }) => {
     const minSalary = useInput("", { isEmpty: true, minLength: 3, maxLength: 4 });
     const maxSalary = useInput("", { isEmpty: true,minLength: 3, maxLength: 4 });
 
+    const [note, setNote] = useState('')
+    const handleNoteChange = (event) => {
+        setNote(event.target.value); // Обновляем состояние при вводе текста
+    };
     // Новое состояние для хранения значения выбранного статуса
-    const [resStatus, setResStatus] = useState("filedApplication"); // Задаем значение по умолчанию
+    const [resStatus, setResStatus] = useState("заявка подана"); // Задаем значение по умолчанию
 
     async function submitData() {
 
@@ -18,7 +22,7 @@ const Modal = ({ active, setActive, children }) => {
             "vacancy": vacancyName.value,
             "minSalary": minSalary.value,
             "maxSalary": maxSalary.value,
-            "note": "It is necessary to complete the test task ",
+            "note": note,
             "resStatus": resStatus
         }
         try {
@@ -115,8 +119,15 @@ const Modal = ({ active, setActive, children }) => {
 
                     <div className='centred'>
                         <label htmlFor="note">Note*</label>
-                        <textarea className="flex_elem" id="note" name="note" rows="2" cols="22"
-                                  placeholder="some note here">
+                        <textarea className="flex_elem"
+                                  id="note"
+                                  name="note"
+                                  rows="3"
+                                  cols="22"
+                                  placeholder="some note here"
+                                  value={note.value}
+                                  onChange={handleNoteChange}
+                        >
                     </textarea>
                     </div>
 

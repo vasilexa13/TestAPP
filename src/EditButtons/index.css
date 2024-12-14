@@ -1,0 +1,12 @@
+.centredCell{
+    display: flex;
+    padding:0 10px;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    margin: 0;
+}
+.hoveredCell:hover{
+    transition: 0.4s;
+    transform: scale(1.2)
+}

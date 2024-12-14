@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import "./tableData.css"
+import EditButtons from "../EditButtons/index.jsx";
 
 function TableData() {
     const [data, setData] = useState([]); // Для хранения полученных данных
@@ -32,8 +33,13 @@ function TableData() {
 
     return (
         <>
-                    {data.map(item => (
+
+            {data.map(item => (
                         <div key={item.company} className="tableDataWrapper">
+                            {/*<EditButtons className="editBtn"/>*/}
+                            <dir className="cell editBtn">
+                            <EditButtons />
+                            </dir>
                             <div className='cell start_cell'>{item.company}</div>
                             <div className='cell'>{item.vacancy}</div>
                             <div className='cell'>{item.minSalary}...{item.maxSalary}</div>
