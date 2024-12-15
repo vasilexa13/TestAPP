@@ -1,7 +1,8 @@
-const PatchComponent = ({onClick}) => {
+const PatchComponent = () => {
     return (
-        <svg onClick={onClick} enableBackground="new 0 0 50 50" height="16" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px"
-             xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><rect fill="none" height="16" width="16"/>
+        <svg  enableBackground="new 0 0 50 50" height="16" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="16px"
+             xmlSpace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+            <rect fill="none" height="16" width="16"/>
             <polyline fill="none" points="  42.948,12.532 10.489,44.99 3,47 5.009,39.511 37.468,7.052 " stroke="#000000"
                       strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="2"/>
             <path

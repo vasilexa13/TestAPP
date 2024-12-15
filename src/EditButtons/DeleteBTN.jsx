@@ -1,6 +1,6 @@
-const DellComponent = ({onClick}) => {
+const DellComponent = () => {
     return (
-        <svg onClick={onClick} height='16' width="16" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+        <svg  height='16' width="16" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
             <path d="M32 464C32 490.5 53.5 512 80 512h288c26.5 0 48-21.5 48-48V128H32V464zM304
             208C304 199.1 311.1 192 320 192s16 7.125 16 16v224c0
             8.875-7.125 16-16 16s-16-7.125-16-16V208zM208 208C208 199.1 215.1 192 224 192s16

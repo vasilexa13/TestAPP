@@ -15,13 +15,8 @@
 .start_cell{
     grid-column-start: 2;
 }
-
-.editBtn{
-    margin: 0 0;
-    padding: 0;
-    grid-column-start: 1;
+.controlBtn{
     display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
 }

@@ -3,18 +3,23 @@ import DellComponent from "./DeleteBTN.jsx";
 import PatchComponent from "./PatchBTN.jsx";
 
 function EditButtons() {
-
+    function dellElement (){
+        console.log("deleted");
+    }
+    function patchElement (){
+        console.log("patched");
+        return
+    }
     return (
-        <>
-            <dir className="hoveredCell">
+        <div className="editBtn">
+            <div className="hoveredCell" onClick={() => {dellElement()}}>
                 <DellComponent className='centredCell'/>
+            </div>
 
-            </dir>
-            <dir className="hoveredCell">
+            <div className="hoveredCell" onClick={() => {patchElement()}}>
                 <PatchComponent className='centredCell '/>
-
-            </dir>
-        </>
+            </div>
+        </div>
     )
 }
 
