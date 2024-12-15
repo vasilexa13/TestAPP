@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import "./tableData.css";
-import EditButtons from "../EditButtons/index.jsx";
 
 function TableData() {
     const [data, setData] = useState([]);
@@ -78,6 +77,7 @@ function TableData() {
 
                 if (response.ok) {
                     console.log(response);
+
                     //вызываем модальное окно
                     //подставляем даные в модальное окно
 
@@ -100,7 +100,6 @@ function TableData() {
             {data.map(item => (
                 <div key={item.company} className="tableDataWrapper">
                     <div className='cell controlBtn'>
-                        {/*<EditButtons />*/}
                         <button onClick={() => deleteItem(item)} style={{height: 30}}>DELETE</button>
                         <button onClick={() => patchItem(item)} style={{height: 30}}>PATCH</button>
                     </div>
