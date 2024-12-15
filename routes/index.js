@@ -54,4 +54,16 @@ router.patch('/update/:id', async (req, res) => {
   }
 })
 
+router.get('/findItem/:company', async (req, res) => {
+  try {
+    const candidateCompany = req.params.company;
+    const candidate = await Candidates.findOne({ company: candidateCompany }); // Предполагая, что у вас есть поле company в модели Candidates
+    if (!candidate) {
+      return res.status(404).json({ message: 'Кандидат не найден' });
+    }
+    res.status(200).json({ id: candidate._id, ...{candidate} });
+  } catch (error) {
+    res.status(500).json({ message: 'Ошибка при получении данных' });
+  }
+});
 export default router;

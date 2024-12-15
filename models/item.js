@@ -5,7 +5,7 @@ const candidatesSchema = new mongoose.Schema({
     vacancy: { type: String, required: true },
     minSalary: { type: Number, required: true },
     maxSalary: { type: Number, required: true },
-    resStatus:{type: Boolean, required: true},
+    resStatus:{type: String, required: true},
     note:{type: String, required: true}
 });
 
