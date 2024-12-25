@@ -2,6 +2,8 @@ import './TableHead.css'
 import MyComponent from "../AddNewField/IconPlus.jsx";
 import {useState} from "react";
 import Modal from "../Modal/Modal.jsx";
+import TableData from "../TableData/TableData.jsx";
+
 
 function TableHead() {
     const [modalActive, setModalActive]=useState(false);
@@ -21,6 +23,7 @@ function TableHead() {
         <div className="cell">Статус отклика</div>
         <div className="cell">Заметка</div>
       </div>
+        <TableData modalActive={modalActive} setModalActive={setModalActive}/>
     </>
   )
 }

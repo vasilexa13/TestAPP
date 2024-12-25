@@ -2,7 +2,7 @@ import "./modal.css";
 import { useInput } from './modalValidation.jsx';
 import {useState} from "react";
 
-const Modal = ({ active, setActive, children }) => {
+const Modal = ({ active, setActive}) => {
     const companyName = useInput("", { isEmpty: true, minLength: 3 });
     const vacancyName = useInput("", { isEmpty: true, minLength: 5 });
     const minSalary = useInput("", { isEmpty: true, minLength: 3, maxLength: 4 });
@@ -12,11 +12,9 @@ const Modal = ({ active, setActive, children }) => {
     const handleNoteChange = (event) => {
         setNote(event.target.value); // Обновляем состояние при вводе текста
     };
-    // Новое состояние для хранения значения выбранного статуса
-    const [resStatus, setResStatus] = useState("заявка подана"); // Задаем значение по умолчанию
+    const [resStatus, setResStatus] = useState("заявка подана");
 
     async function submitData() {
-
         const data = {
             "company": companyName.value,
             "vacancy": vacancyName.value,
@@ -111,7 +109,7 @@ const Modal = ({ active, setActive, children }) => {
                                 <option value="приглашение на интервью">приглашение на интервью</option>
                                 <option value="не подходит">не подходит</option>
                                 <option value="отказ">отказ</option>
-                                <option value="jпредложение о работе">предложение о работе</option>
+                                <option value="предложение о работе">предложение о работе</option>
                                 <option value="вакансия закрыта">вакансия закрыта</option>
                             </select>
                         </div>
@@ -162,7 +160,7 @@ const Modal = ({ active, setActive, children }) => {
                     </div>
 
                     <div className='centred' style={{color: "orange", textAlign: 'center'}}>
-                        Click "CANCEL" button to clear the form
+                        Click `CANCEL` button to clear the form
                     </div>
 
                     <div className='centred'>
@@ -185,7 +183,7 @@ const Modal = ({ active, setActive, children }) => {
 
                         </div>
                     </div>
-                    {children}
+                    {/*{children}*/}
                 </form>
             </div>
         </div>

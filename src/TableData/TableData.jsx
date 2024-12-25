@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import "./tableData.css";
+import Modal from "../Modal/Modal.jsx";
 
-function TableData() {
+function TableData({ modalActive, setModalActive }) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [editItem, setEditItem] = useState(null);
 
     const fetchData = async () => {
         setLoading(true);
@@ -27,11 +29,7 @@ function TableData() {
         fetchData();
     }, []);
 
-
-
     const deleteItem = async (item) => {
-        console.log(item, 'item');
-        console.log(item.company, 'item.company');
         try {
             const findElemIdResponse = await fetch(`http://localhost:3000/findItem/${item.company}`);
             if (!findElemIdResponse.ok) {
@@ -47,7 +45,6 @@ function TableData() {
                 });
 
                 if (response.ok) {
-                    // После успешного удаления данных снова загружаем данные
                     fetchData();
                 } else {
                     throw new Error('Ошибка при удалении элемента');
@@ -59,38 +56,26 @@ function TableData() {
     };
 
     const patchItem = async (item) => {
-        console.log(item, 'item');
-        console.log(item.company, 'item.company');
         try {
             const findElemIdResponse = await fetch(`http://localhost:3000/findItem/${item.company}`);
             if (!findElemIdResponse.ok) {
                 throw new Error('Ошибка при поиске элемента');
             }
 
+    console.log(findElemIdResponse);
             const findElemIdData = await findElemIdResponse.json();
             const findElemId = findElemIdData.id;
 
             if (window.confirm('Вы уверены, что хотите изменить этот элемент?')) {
-                const response = await fetch(`http://localhost:3000/update/${findElemId}`, {
-                    method: 'PATCH',
-                });
-
-                if (response.ok) {
-                    console.log(response);
-
-                    //вызываем модальное окно
-                    //подставляем даные в модальное окно
-
-                //     fetchData();
-                } else {
-                    throw new Error('Ошибка при удалении элемента');
-                }
+                setEditItem(item);
+                console.log('item', item)
+                setModalActive(true);
+                // подставляю в поле полученные значения
             }
         } catch (error) {
             setError(error);
         }
     };
-
 
     if (loading) return <div>Загрузка...</div>;
     if (error) return <div>Ошибка: {error.message}</div>;
@@ -110,9 +95,10 @@ function TableData() {
                     <div className='cell'>{item.note}</div>
                 </div>
             ))}
+            {/*<Modal active={modalActive} setActive={setModalActive} editItem={editItem} /> /!* Передача editItem в модальное окно *!/*/}
+
         </>
     );
 }
 
 export default TableData;
-
