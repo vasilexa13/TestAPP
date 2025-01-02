@@ -2,9 +2,13 @@ import express from 'express';
 import Candidates from "../models/item.js";
 const router = express.Router();
 
+router.get('/', async (req, res) => {
+  res.status(200).send("Hi everyOne");
+});
+
 router.get('/getAll', async (req, res) => {
   try {
-    const candidates = await Candidates.find();//
+    const candidates = await Candidates.find();
     res.status(200).json(candidates);
   } catch (error) {
     res.status(500).json({ message: 'Ошибка при получении данных' });
