@@ -8,7 +8,7 @@ createRoot(document.getElementById('root')).render(
 <StrictMode>
         <Header />
         <TableHead />
-        {/*<TableData />*/}
+        <TableData />
 </StrictMode>
 )
 
