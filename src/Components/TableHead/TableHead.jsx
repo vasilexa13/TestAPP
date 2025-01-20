@@ -1,5 +1,5 @@
 import './TableHead.css'
-import MyComponent from "../AddNewField/IconPlus.jsx";
+import MyComponent from "./IconPlus.jsx";
 import {useState} from "react";
 import Modal from "../Modal/Modal.jsx";
 import TableData from "../TableData/TableData.jsx";

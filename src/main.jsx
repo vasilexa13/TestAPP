@@ -1,14 +1,11 @@
 import { createRoot } from 'react-dom/client'
-import Header from "./Header/Header.jsx";
-import TableData from "./TableData/TableData.jsx";
-import TableHead from "./App/TableHead.jsx";
+import Header from "./Components/Header/Header.jsx";
+import TableHead from "./Components/TableHead/TableHead.jsx";
 import {StrictMode} from "react";
 
 createRoot(document.getElementById('root')).render(
 <StrictMode>
         <Header />
         <TableHead />
-        <TableData />
 </StrictMode>
 )
-
